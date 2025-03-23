@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <h1 class="title">Rock Paper Scissor✊✌️✋</h1>
+    <h1 class="prompt"></h1>
+    <div class="container">
+        <div class="btn-wrapper">
+            <button class="rock">
+                <img src="img/rock.jpg" height="200" width="200">
+            </button>
+            <h4>Rock</h4>
+        </div>
+
+        <div class="btn-wrapper">
+            <button class="paper"><img src="img/paper.jpg" height="200" width="200"></button>
+            <h4>Paper</h4>
+        </div>
+
+        <div class="btn-wrapper">
+            <button class="scissor"><img src="img/scissor.jpg" height="200" width="200"></button>
+            <h4>Scissor</h4>
+        </div>
+    </div>
+
+    <div class="score">
+        <h1>Scorecard :</h1>
+        <ul>
+            <li>Win : <span id="win">0</span></li>
+            <li>Lose : <span id="lose">0</span></li>
+            <li>Draw : <span id="draw">0</span></li>
+        </ul>
+    </div>
     
 </body>
 </html>

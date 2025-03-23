@@ -1,4 +1,16 @@
+//To get the choice of the user
+const buttons=document.querySelectorAll(".container button");
+buttons.forEach(function(btn){
+    btn.addEventListener("click",PlayRound);
+});
 
+function getHumanChoice(event){
+    
+    let choice=event.currentTarget.className;
+    return choice;    
+}
+
+//Generate a randome choice from computer
 function getCompChoice(){
     const res=Math.floor(Math.random()*3);//values till 3-1=2
     if(res==0){
@@ -12,50 +24,60 @@ function getCompChoice(){
     }
 }
 
-function getHumanChoice(){
-    let choice=prompt("enter your choice (Rock/Paper/scissor) : ");
-    choice=choice.toLowerCase();
-    return choice;    
-}
+//Function to calculate the win and losses
+let win=0;
+let lose=0;
+let draw=0;
 
-function PlayRound(){
+function PlayRound(event){
+    const prompt=document.querySelector(".prompt");//To get prompt
+    let c_choice=getCompChoice();
+    let h_choice=getHumanChoice(event);
 
-    let c_score=0;
-    let h_score=0;
-    let n=5;
-
-    while(n--){
-        let c_choice=getCompChoice();
-        let h_choice=getHumanChoice();
-
-        if(c_choice==h_choice){
-            console.log("Its a tie,points to both");
-        }
-        else if(c_choice=="rock" && h_choice=="scissor"){
-            console.log("You lose as "+c_choice +" loses to "+ h_choice);
-            c_choice++;
-        }
-        else if(c_choice=="paper" && h_choice=="rock"){
-            console.log("You lose as "+c_choice +" loses to "+ h_choice);
-            c_choice++;
-        }
-        else if(c_choice=="scissor" && h_choice=="paper"){
-            console.log("You lose as "+c_choice +" loses to "+ h_choice);
-            c_choice++;
-        }
-        else{
-            console.log("You Win as "+c_choice +" loses to "+ h_choice);
-            h_choice++;
-        }
+    if(c_choice==h_choice){
+        prompt.innerText="Its a tie,points to both";
+        prompt.style.color="blue";
+        draw+=1;
     }
-    if(c_score>h_score){
-        console.log("Computer Wins");
+    else if(c_choice=="rock" && h_choice=="scissor"){
+        prompt.innerText="You lose as "+h_choice +" loses to "+ c_choice;
+        prompt.style["color"]="red";
+        lose+=1;
+    }
+    else if(c_choice=="paper" && h_choice=="rock"){
+        prompt.innerText="You lose as "+h_choice +" loses to "+ c_choice;
+        prompt.style["color"]="red";
+        lose+=1;
+    }
+    else if(c_choice=="scissor" && h_choice=="paper"){
+        prompt.innerText="You lose as "+h_choice +" loses to "+ c_choice;
+        prompt.style["color"]="red";
+        lose+=1;
     }
     else{
-        console.log("User Wins");
+        prompt.innerText="You Win as "+h_choice +" wins against to "+ c_choice;
+        prompt.style["color"]="green";
+        win+=1;
     }
 
+
+//To update the score container
+    const scores=document.querySelectorAll(".score span");
+
+    scores.forEach(function(span){
+
+        if(span.id=="win"){
+            span.innerText=win;
+        }
+        else if(span.id=="lose"){
+            span.innerText=lose;
+        }
+        else{
+            span.innerText=draw;
+        }
+    });
     
 }
 
-PlayRound();
+
+
